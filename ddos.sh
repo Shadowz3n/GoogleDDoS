@@ -6,7 +6,7 @@ control_c(){
         exit 1
 }
 trap control_c SIGINT
-for ((i=2000; i<=7700; i++)); do
+for ((i=5000; i<=7800; i++)); do
         cat links.txt | while read line; do
                 curl "$line?sz=$i" -sS > /dev/null & echo $i;
         done
