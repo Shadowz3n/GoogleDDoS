@@ -1,6 +1,14 @@
 #!/bin/bash
-cat links.txt | while read line; do
-        for ((i=1000; i<=7700; i++)); do
-                curl -sS "$line?sz=$i" > /dev/null; echo "size: $i"
+control_c(){
+        tput clear
+        rm -f /tmp/tempfile
+        echo "Exiting..."
+        exit 1
+}
+trap control_c SIGINT
+for ((i=2000; i<=7700; i++)); do
+        cat links.txt | while read line; do
+                curl "$line?sz=$i" -sS > /dev/null & echo $i;
         done
 done
+wait
