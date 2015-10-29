@@ -8,7 +8,7 @@ control_c(){
 trap control_c SIGINT
 for ((i=5000; i<=7800; i++)); do
         cat links.txt | while read line; do
-                curl "$line?sz=$i" -sS > /dev/null & echo $i;
+                curl "https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$line?sz=$i" -sS > /dev/null & echo $i;
         done
 done
 wait
