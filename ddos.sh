@@ -11,8 +11,7 @@ if [ "$1" ]; then
 		KBS=$((`cat /sys/class/net/$1/statistics/tx_bytes`/1024 /2))
 		echo "$1: $KBS kb/s"
 	else
-		echo "This interface is not valid"
-		exit 1
+		echo "This interface is not valid"; exit 1;
 	fi
 	for ((i=5000; i<=8000; i++)); do
         	cat links.txt | while read line; do
